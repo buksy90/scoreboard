@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ScoreBoard</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+
+    <div class="container-fluid" ng-app="app">
+        <div class="row">
+            <div class="col-sm-12 col-lg-7 col-xl-6">
+                <h2>Výsledky</h2>
+                <table ng-controller="ScoreTableController" class="table table-hover">
+                    <thead class="thead-default">
+                    <tr>
+                        <th>#</th>
+                        <th width="60">Logo</th>
+                        <th class="hidden-sm-down">Tím</th>
+                        <th class="text-center">
+                            <span class="hidden-xs-down">Výhry</span>
+                            <span class="hidden-sm-up">W</span>
+                        </th>
+                        <th class="text-center">
+                            <span class="hidden-xs-down">Remízy</span>
+                            <span class="hidden-sm-up">T</span>
+                        </th>
+                        <th class="text-center">
+                            <span class="hidden-xs-down">Prehry</span>
+                            <span class="hidden-sm-up">L</span>
+                        </th>
+                        <th class="text-center">
+                            <span class="hidden-xs-down">Zápasy</span>
+                            <span class="hidden-sm-up" title="Games">G</span>
+                        </th>
+                        <th class="text-center">
+                            <span class="hidden-xs-down">Body</span>
+                            <span class="hidden-sm-up">Pts</span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="player in players | orderByPoints">
+                        <th scope="row">{{$index+1}}</th>
+                        <td><img ng-src="{{player.getLogo()}}" class="img-fluid"></td>
+                        <td class="hidden-sm-down">{{player.name}}</td>
+                        <td class="text-center">{{player.getWinsCount()}}</td>
+                        <td class="text-center">{{player.getTiesCount()}}</td>
+                        <td class="text-center">{{player.getLosesCount()}}</td>
+                        <td class="text-center">{{player.getPlayedMatchesCount()}}</td>
+                        <td class="text-center">{{player.getPoints()}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="col-sm-12 col-lg-5 col-xl-3">
+                <h2>Zápasy</h2>
+                <table class="table" ng-controller="MatchesTableController">
+                    <thead class="thead-default">
+                        <tr>
+                            <th>Domáci</th>
+                            <th></th>
+                            <th>Hosť</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="match in matches | orderNextMatches" ng-class="{'table-danger': match.isPlayed()}">
+                            <td>{{match.getHomePlayer().name}}</td>
+                            <td>{{match.getHomePlayer().getPause()}}</td>
+                            <td>{{match.getAwayPlayer().name}}</td>
+                            <td>{{match.getAwayPlayer().getPause()}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-sm-12 col-lg-5 col-xl-3">
+                <h2>História</h2>
+                <table class="table" ng-controller="MatchesTableController">
+                    <thead class="thead-default">
+                    <tr>
+                        <th>Domáci</th>
+                        <th></th>
+                        <th></th>
+                        <th>Hosť</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="match in matches | orderPlayedMatches">
+                        <td>{{match.getHomePlayer().name}}</td>
+                        <td>{{match.getHomeScore()}}</td>
+                        <td>{{match.getAwayScore()}}</td>
+                        <td>{{match.getAwayPlayer().name}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="debug text-center" style="position: fixed; bottom: 10px; right: 10px; height: 25px; width: 30px; background-color: rgba(0,0,0, 0.5); color: #FFF">
+        <div class="hidden-lg-down">XL</div>
+        <div class="hidden-md-down hidden-xl-up">LG</div>
+        <div class="hidden-sm-down hidden-lg-up">MD</div>
+        <div class="hidden-xs-down hidden-md-up">SM</div>
+        <div class="hidden-sm-up">XS</div>
+    </div>
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/match.js"></script>
+    <script src="js/matchesService.js"></script>
+    <script src="js/playersService.js"></script>
+    <script src="js/scoreTable.js"></script>
+    <script src="js/matchesTable.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
