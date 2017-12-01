@@ -4,10 +4,10 @@
 </div>
 <div class="row mt-3">
     <div class="col-sm-6 hidden-sm-down text-center">
-        <img src="{{$ctrl.match.getHomePlayer().logo}}" class="img-fluid player-logo" alt="Home logo">
+        <img ng-src="{{$ctrl.match.getHomePlayer().logo}}" class="img-fluid player-logo" alt="Home logo">
     </div>
     <div class="col-sm-6 hidden-sm-down text-center">
-        <img src="{{$ctrl.match.getAwayPlayer().logo}}" class="img-fluid player-logo" alt="Away logo">
+        <img ng-src="{{$ctrl.match.getAwayPlayer().logo}}" class="img-fluid player-logo" alt="Away logo">
     </div>
 
     <div class="col-sm-6 text-center">
@@ -20,17 +20,17 @@
 
 <div class="row mt-3">
     <div class="col-sm-4 offset-sm-1">
-        <input type="number" min="0" max="99" class="form-control">
+        <input type="number" min="0" max="99" class="form-control" required ng-model="$ctrl.homeScore">
     </div>
     <div class="col-sm-2"></div>
     <div class="col-sm-4">
-        <input type="number" min="0" max="99" class="form-control">
+        <input type="number" min="0" max="99" class="form-control" required ng-model="$ctrl.awayScore">
     </div>
 </div>
 
 <div class="row mt-4">
     <div class="col-sm-12">
         <a ui-sref="main" class="btn btn-danger float-right mx-3">Zavrieť</a>
-        <a ui-sref="main" class="btn btn-success float-right">Uložiť</a>
+        <a class="btn btn-success float-right" ng-click="$ctrl.save()">Uložiť</a>
     </div>
 </div>

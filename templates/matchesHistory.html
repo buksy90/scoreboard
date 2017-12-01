@@ -6,6 +6,7 @@
         <th>Skóre</th>
         <th>Skóre</th>
         <th>Hosť</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -14,6 +15,9 @@
         <td class="text-center">{{match.getHomeScore()}}</td>
         <td class="text-center">{{match.getAwayScore()}}</td>
         <td class="text-right"><player-detail player="match.getAwayPlayer()"></player-detail></td>
+        <td class="text-center">
+            <a class="btn btn-danger btn-sm" ui-sref="recordMatch({ matchId: match.getId(), matchName: match.getHomePlayer().name+'-'+match.getAwayPlayer().name })">Upraviť</a>
+        </td>
     </tr>
     </tbody>
 </table>
