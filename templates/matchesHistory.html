@@ -1,9 +1,8 @@
-<h2>Odohraté zápasy</h2>
+<h2 class="pt-1">Odohraté zápasy</h2>
 <table class="table">
     <thead class="thead-default">
     <tr>
         <th>Domáci</th>
-        <th>Skóre</th>
         <th>Skóre</th>
         <th>Hosť</th>
         <th></th>
@@ -12,8 +11,7 @@
     <tbody>
     <tr ng-repeat="match in matches | orderPlayedMatches">
         <td class="text-left"><player-detail player="match.getHomePlayer()"></player-detail></td>
-        <td class="text-center">{{match.getHomeScore()}}</td>
-        <td class="text-center">{{match.getAwayScore()}}</td>
+        <td class="text-center">{{match.getHomeScore()}}:{{match.getAwayScore()}}</td>
         <td class="text-right"><player-detail player="match.getAwayPlayer()"></player-detail></td>
         <td class="text-center">
             <a class="btn btn-danger btn-sm" ui-sref="recordMatch({ matchId: match.getId(), matchName: match.getHomePlayer().name+'-'+match.getAwayPlayer().name })">Upraviť</a>

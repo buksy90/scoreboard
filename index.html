@@ -9,13 +9,12 @@
     <style>
         .modal { display: block; }
         .player-logo { max-width: 40px; }
+        .navbar-xs { width: 100%; width: 100vw; height: 35px; position: fixed; top: 0; left: 0; z-index: 1030; }
     </style>
 </head>
 <body>
-    <div class="-my-3">&nbsp;</div>
-
     <div class="container-fluid" ng-app="app">
-        <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+        <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top hidden-xs-down">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="#table">Table</a>
@@ -28,12 +27,25 @@
                 </li>
             </ul>
         </nav>
+        <nav class="bg-inverse navbar-xs container-fluid hidden-sm-up">
+            <div class="row">
+                <div class="col-4 py-1 text-left">
+                    <a class="text-white" href="#table">Table</a>
+                </div>
+                <div class="col-4 py-1 text-center">
+                    <a class="text-white" href="#next">Next</a>
+                </div>
+                <div class="col-4 py-1 text-right">
+                    <a class="text-white" href="#history">History</a>
+                </div>
+            </div>
+        </nav>
 
         <div ui-view="modal"></div>
 
         <div class="row">
             <div id="table" class="col-sm-12 col-lg-7 col-xl-6 pt-5">
-                <h2>Výsledky</h2>
+                <h2 class="mt-1">Výsledky</h2>
                 <table ng-controller="ScoreTableController" class="table table-hover">
                     <thead class="thead-default">
                     <tr>
