@@ -4,8 +4,10 @@ angular.module("app", [
     "app.matchesService",
     "app.playersService",
     "app.component.upcomingMatches",
+    "app.component.matchesHistory",
     "app.component.modal",
-    "app.component.playerModalText",
+    "app.component.modalPlayerText",
+    "app.component.modalRecordMatch",
     "ui.router"
 ])
 .run(["MatchesService", "PlayersService", function(MatchesService, PlayersService){
@@ -71,7 +73,7 @@ angular.module("app", [
     $stateProvider
         .state({
             name: "main",
-            url: ""
+            url: "/"
         })
         .state({
             name: "playerDetail",
@@ -84,7 +86,7 @@ angular.module("app", [
                         ? null
                         : {
                             title: player.name,
-                            component: "playerModalText"
+                            component: "modalPlayerText"
                         };
                 }]
             },

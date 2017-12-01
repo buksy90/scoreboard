@@ -1,1 +1,4 @@
-<a ui-sref="playerDetail({playerName: $ctrl.player.name, modalParams: 1111 })">{{$ctrl.player.name}}</a>
+<a ui-sref="playerDetail({playerName: $ctrl.player.name, modalParams: 1111 })" class="component-player-detail">
+    <img ng-src="{{$ctrl.player.getLogo()}}" class="img-fluid player-logo hidden-md-up" alt="{{$ctrl.player.name}} logo">
+    <span class="hidden-sm-down">{{$ctrl.player.name}}</span>
+</a>

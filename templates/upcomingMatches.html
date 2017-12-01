@@ -2,22 +2,22 @@
 <table class="table">
     <thead class="thead-default">
     <tr>
-        <th>Domáci</th>
-        <th></th>
-        <th>Hosť</th>
+        <th class="text-center">Domáci</th>
+        <th class="text-center">Hosť</th>
         <th></th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="match in matches | orderNextMatches" ng-class="{'table-danger': match.isPlayed()}">
-        <td>
+        <td class="text-left">
             <player-detail player="match.getHomePlayer()"></player-detail>
+            <small>{{match.getHomePlayer().getPause()}}</small>
         </td>
-        <td>{{match.getHomePlayer().getPause()}}</td>
-        <td>
+        <td class="text-left">
             <player-detail player="match.getAwayPlayer()"></player-detail>
+            <small>{{match.getAwayPlayer().getPause()}}</small>
         </td>
-        <td>{{match.getAwayPlayer().getPause()}}</td>
+        <td class="text-center"><div class="btn btn-primary btn-sm">Zapísať</div></td>
     </tr>
     </tbody>
 </table>

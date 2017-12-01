@@ -5,8 +5,10 @@
     <title>ScoreBoard</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <base href="/scoreBoard/">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <style>
         .modal { display: block; }
+        .component-player-detail .player-logo { max-width: 40px; }
     </style>
 </head>
 <body>
@@ -22,8 +24,7 @@
                     <thead class="thead-default">
                     <tr>
                         <th>#</th>
-                        <th width="60">Logo</th>
-                        <th class="hidden-sm-down">Tím</th>
+                        <th class="text-center">Tím</th>
                         <th class="text-center">
                             <span class="hidden-xs-down">Výhry</span>
                             <span class="hidden-sm-up">W</span>
@@ -49,8 +50,7 @@
                     <tbody>
                     <tr ng-repeat="player in players | orderByPoints">
                         <th scope="row">{{$index+1}}</th>
-                        <td><img ng-src="{{player.getLogo()}}" class="img-fluid"></td>
-                        <td class="hidden-sm-down">{{player.name}}</td>
+                        <td class="text-center"><player-detail player="player"></player-detail></td>
                         <td class="text-center">{{player.getWinsCount()}}</td>
                         <td class="text-center">{{player.getTiesCount()}}</td>
                         <td class="text-center">{{player.getLosesCount()}}</td>
@@ -66,26 +66,9 @@
             </div>
 
             <div class="col-sm-12 col-lg-5 col-xl-3">
-                <h2>História</h2>
-                <table class="table" ng-controller="MatchesTableController">
-                    <thead class="thead-default">
-                    <tr>
-                        <th>Domáci</th>
-                        <th></th>
-                        <th></th>
-                        <th>Hosť</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="match in matches | orderPlayedMatches">
-                        <td>{{match.getHomePlayer().name}}</td>
-                        <td>{{match.getHomeScore()}}</td>
-                        <td>{{match.getAwayScore()}}</td>
-                        <td>{{match.getAwayPlayer().name}}</td>
-                    </tr>
-                    </tbody>
-                </table>
+                <matches-history></matches-history>
             </div>
+
         </div>
     </div>
 
@@ -107,8 +90,10 @@
     <script src="js/matchesTable.js"></script>
     <script src="js/component.playerDetail.js"></script>
     <script src="js/component.upcomingMatches.js"></script>
+    <script src="js/component.matchesHistory.js"></script>
     <script src="js/component.modal.js"></script>
-    <script src="js/component.playerModalText.js"></script>
+    <script src="js/component.modalPlayerText.js"></script>
+    <script src="js/component.modalRecordMatch.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

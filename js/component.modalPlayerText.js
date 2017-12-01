@@ -1,6 +1,6 @@
-angular.module("app.component.playerModalText", [])
-.component("playerModalText", {
-    templateUrl: "templates/playerModalText.html",
+angular.module("app.component.modalPlayerText", [])
+.component("modalPlayerText", {
+    templateUrl: "templates/modalPlayerText.html",
     bindings: {
         playerName: "<"
     },
