@@ -17,13 +17,7 @@ angular.module("app.component.modalRecordMatch", ["ui.router", "app.matchesServi
             };
 
             this.save = function() {
-                if(this.match === null)
-                    return false;
-
-                if(isNaN(parseInt(this.homeScore)))
-                    return false;
-
-                if(isNaN(parseInt(this.awayScore)))
+                if(this.canSave() === false)
                     return false;
 
                 this.match.setHomeScore(parseInt(this.homeScore));
@@ -33,5 +27,23 @@ angular.module("app.component.modalRecordMatch", ["ui.router", "app.matchesServi
 
                 $state.go("main");
             };
+
+            this.canSave = function() {
+                return (this.match === null || isNaN(parseInt(this.homeScore)) || isNaN(parseInt(this.awayScore))) === false;
+            };
+
+            this.reset = function() {
+                if(this.canReset() === false)
+                    return false;
+
+                this.match.setHomeScore(null);
+                this.match.setAwayScore(null);
+
+                $state.go("main");
+            };
+
+            this.canReset = function() {
+                return this.match !== null && this.match.isPlayed() === true;
+            }
         }]
     });
