@@ -95,5 +95,28 @@ angular.module("app", [
                     component: "modal"
                 }
             },
+        })
+        .state({
+            name: "recordMatch",
+            url: "/record/{matchId}/{matchName}",
+            params: { matchName: null },
+            resolve: {
+                modalParams: ["$stateParams", "MatchesService", function($stateParams, MatchesService){
+                    var match = MatchesService.getById(parseInt($stateParams.matchId));
+
+                    return match === null
+                        ? null
+                        : {
+                            title: "Zapísať zápas",
+                            component: "modalRecordMatch",
+                            matchId: $stateParams.matchId
+                        };
+                }]
+            },
+            views: {
+                "modal": {
+                    component: "modal"
+                }
+            },
         });
 }]);

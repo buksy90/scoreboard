@@ -10,10 +10,7 @@
             </div>
             <div class="modal-body">
                 <modal-player-text ng-if="$ctrl.modalParams.component == 'modalPlayerText'" player-name="$ctrl.modalParams.title"></modal-player-text>
-                <p>{{$ctrl.modalParams.text}}</p>
-            </div>
-            <div class="modal-footer">
-                <a ui-sref="main" class="btn btn-secondary">Zavrieť</a>
+                <modal-record-match ng-if="$ctrl.modalParams.component == 'modalRecordMatch'" match-id="$ctrl.modalParams.matchId"></modal-record-match>
             </div>
         </div>
     </div>

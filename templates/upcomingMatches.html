@@ -17,7 +17,9 @@
             <player-detail player="match.getAwayPlayer()"></player-detail>
             <small>{{match.getAwayPlayer().getPause()}}</small>
         </td>
-        <td class="text-center"><div class="btn btn-primary btn-sm">Zapísať</div></td>
+        <td class="text-center">
+            <a class="btn btn-primary btn-sm" ui-sref="recordMatch({ matchId: match.getId(), matchName: match.getHomePlayer().name+'-'+match.getAwayPlayer().name })">Zapísať</a>
+        </td>
     </tr>
     </tbody>
 </table>

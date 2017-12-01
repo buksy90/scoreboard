@@ -10,11 +10,13 @@ angular.module("app.matchesTable", ["app.matchesService"])
                 })
                 .sort(function(a, b) {
                     // Put players that played less matches first
+                    /*
                     var played1 = a.getHomePlayer().getPlayedMatchesCount() + a.getAwayPlayer().getPlayedMatchesCount();
                     var played2 = b.getHomePlayer().getPlayedMatchesCount() + b.getAwayPlayer().getPlayedMatchesCount();
                     if(played1 !== played2) {
                         return played1 - played2;
                     }
+                    */
 
                     var pause1 = a.getHomePlayer().getPause() + a.getAwayPlayer().getPause();
                     var pause2 = b.getHomePlayer().getPause() + b.getAwayPlayer().getPause();

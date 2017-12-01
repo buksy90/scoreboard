@@ -13,6 +13,15 @@ angular.module("app.matchesService", ["app.match"])
 
         register: function(match) {
             matches.push(match);
+        },
+
+        getById: function(id) {
+            for(var i = 0; i < matches.length; i++) {
+                if(matches[i].getId() === id)
+                    return matches[i];
+            }
+
+            return null;
         }
     };
 }]);

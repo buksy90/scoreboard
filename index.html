@@ -8,17 +8,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <style>
         .modal { display: block; }
-        .component-player-detail .player-logo { max-width: 40px; }
+        .player-logo { max-width: 40px; }
     </style>
 </head>
 <body>
+    <div class="my-3">&nbsp;</div>
 
     <div class="container-fluid" ng-app="app">
+        <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#table">Table</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#next">Next</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#history">History</a>
+                </li>
+            </ul>
+        </nav>
 
         <div ui-view="modal"></div>
 
         <div class="row">
-            <div class="col-sm-12 col-lg-7 col-xl-6">
+            <div id="table" class="col-sm-12 col-lg-7 col-xl-6">
                 <h2>Výsledky</h2>
                 <table ng-controller="ScoreTableController" class="table table-hover">
                     <thead class="thead-default">
@@ -61,11 +75,11 @@
                 </table>
             </div>
 
-            <div class="col-sm-12 col-lg-5 col-xl-3">
+            <div id="next" class="col-sm-12 col-lg-5 col-xl-3">
                 <upcoming-matches></upcoming-matches>
             </div>
 
-            <div class="col-sm-12 col-lg-5 col-xl-3">
+            <div id="history" class="col-sm-12 col-lg-5 col-xl-3">
                 <matches-history></matches-history>
             </div>
 
