@@ -19,6 +19,15 @@ angular.module("app.playersService", ["app.player", "app.match"])
 
                 p.incrementPause();
             }
+        },
+
+        getByName: function(name) {
+            for(var i = 0; i < players.length; i++) {
+                if(players[i].name === name)
+                    return players[i];
+            }
+
+            return null;
         }
     };
 }]);

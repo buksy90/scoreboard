@@ -9,6 +9,7 @@
                 this._wins          = null;
                 this._loses         = null;
                 this._ties          = null;
+                this._played        = null;
                 this.logo           = null;
                 this.pauseLength    = 0;
             }
@@ -31,6 +32,7 @@
                 this._wins      = null;
                 this._loses     = null;
                 this._ties      = null;
+                this._played    = null;
                 this.resetPause();
             };
 
@@ -75,7 +77,9 @@
             };
 
             Player.prototype.getPlayedMatchesCount = function() {
-                return this.matches.filter((m) => m.isPlayed() === true).length;
+                return this._played !== null
+                    ? this._played
+                    : (this._played = this.matches.filter((m) => m.isPlayed() === true).length);
             };
 
             Player.prototype.setLogo = function(logo) {

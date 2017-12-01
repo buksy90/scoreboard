@@ -1,0 +1,23 @@
+<h2>Nasledujúce zápasy</h2>
+<table class="table">
+    <thead class="thead-default">
+    <tr>
+        <th>Domáci</th>
+        <th></th>
+        <th>Hosť</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="match in matches | orderNextMatches" ng-class="{'table-danger': match.isPlayed()}">
+        <td>
+            <player-detail player="match.getHomePlayer()"></player-detail>
+        </td>
+        <td>{{match.getHomePlayer().getPause()}}</td>
+        <td>
+            <player-detail player="match.getAwayPlayer()"></player-detail>
+        </td>
+        <td>{{match.getAwayPlayer().getPause()}}</td>
+    </tr>
+    </tbody>
+</table>

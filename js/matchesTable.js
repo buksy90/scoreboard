@@ -4,22 +4,23 @@ angular.module("app.matchesTable", ["app.matchesService"])
     }])
     .filter('orderNextMatches', function(){
         return function(matches) {
-            return matches.slice().sort(function(a, b) {
-                if(a.isPlayed() !== b.isPlayed()) {
-                    return a.isPlayed() ? 1 : -1;
-                }
+            return matches
+                .filter(function(match){
+                    return match.isPlayed() === false;
+                })
+                .sort(function(a, b) {
+                    // Put players that played less matches first
+                    var played1 = a.getHomePlayer().getPlayedMatchesCount() + a.getAwayPlayer().getPlayedMatchesCount();
+                    var played2 = b.getHomePlayer().getPlayedMatchesCount() + b.getAwayPlayer().getPlayedMatchesCount();
+                    if(played1 !== played2) {
+                        return played1 - played2;
+                    }
 
-                var played1 = a.getHomePlayer().getPlayedMatchesCount();
-                var played2 = b.getHomePlayer().getPlayedMatchesCount();
-                if(played1 !== played2) {
-                    return played1 - played2;
-                }
+                    var pause1 = a.getHomePlayer().getPause() + a.getAwayPlayer().getPause();
+                    var pause2 = b.getHomePlayer().getPause() + b.getAwayPlayer().getPause();
 
-                var pause1 = a.getHomePlayer().getPause() + a.getAwayPlayer().getPause();
-                var pause2 = b.getHomePlayer().getPause() + b.getAwayPlayer().getPause();
-
-                return pause2 - pause1;
-            });
+                    return pause2 - pause1;
+                });
         };
     })
     .filter('orderPlayedMatches', function(){

@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-sm-6"><strong>Odohral</strong></div>
+    <div class="col-sm-6">
+        {{$ctrl.player.getPlayedMatchesCount()}}
+        {{$ctrl.player.getPlayedMatchesCount() | filterMatchesText}}
+    </div>
+
+    <div class="col-sm-6"><strong>Vyhral</strong></div>
+    <div class="col-sm-6">
+        {{$ctrl.player.getWinsCount()}}
+        {{$ctrl.player.getWinsCount() | filterMatchesText}}
+    </div>
+
+    <div class="col-sm-6"><strong>Prehral</strong></div>
+    <div class="col-sm-6">
+        {{$ctrl.player.getLosesCount()}}
+        {{$ctrl.player.getLosesCount() | filterMatchesText}}
+    </div>
+
+    <div class="col-sm-6"><strong>Remízoval</strong></div>
+    <div class="col-sm-6">
+        {{$ctrl.player.getTiesCount()}}
+        {{$ctrl.player.getTiesCount() | filterMatchesText}}
+    </div>
+
+    <div class="col-sm-6"><strong>Oddychuje</strong></div>
+    <div class="col-sm-6">
+        {{$ctrl.player.getPause()}}
+        {{$ctrl.player.getPause() | filterMatchesText}}
+    </div>
+</div>
+
+<div class="mt-4"></div>
+
+<div class="row" ng-repeat="match in $ctrl.player.matches | filterPlayedMatches">
+    <div class="col-sm-4">{{match.getHomePlayer().name}}</div>
+    <div class="col-sm-2" ng-class="{'text-success': match.getWinner() === match.getHomePlayer() && match.getHomePlayer() === $ctrl.player}">{{match.getHomeScore()}}</div>
+    <div class="col-sm-2" ng-class="{'text-success': match.getWinner() === match.getAwayPlayer() && match.getAwayPlayer() === $ctrl.player}">{{match.getAwayScore()}}</div>
+    <div class="col-sm-4">{{match.getAwayPlayer().name}}</div>
+</div>

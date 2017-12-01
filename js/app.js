@@ -1,4 +1,13 @@
-angular.module("app", ["app.scoreTable", "app.matchesTable", "app.matchesService", "app.playersService"])
+angular.module("app", [
+    "app.scoreTable",
+    "app.matchesTable",
+    "app.matchesService",
+    "app.playersService",
+    "app.component.upcomingMatches",
+    "app.component.modal",
+    "app.component.playerModalText",
+    "ui.router"
+])
 .run(["MatchesService", "PlayersService", function(MatchesService, PlayersService){
 
     var playersConfig = [
@@ -57,38 +66,32 @@ angular.module("app", ["app.scoreTable", "app.matchesTable", "app.matchesService
             PlayersService.incrementPauseExcept([match.getHomePlayer(), match.getAwayPlayer()]);
         }
     }
+}])
+.config(["$stateProvider", function($stateProvider){
+    $stateProvider
+        .state({
+            name: "main",
+            url: ""
+        })
+        .state({
+            name: "playerDetail",
+            url: "/player/{playerName}",
+            resolve: {
+                modalParams: ["$stateParams", "PlayersService", function($stateParams, PlayersService){
+                    var player = PlayersService.getByName($stateParams.playerName);
 
-    /*
-    //
-    // Test initialization
-    //
-    var playersCount = 4;
-    for(let i = 0; i < playersCount; i++) {
-        let p       = Player.new();
-        p.name      = "Player "+i;
-        players.push(p);
-    }
-
-    for(let i = 0; i < players.length; i++) {
-        let p1 = players[i];
-
-        for(let j = 0; j < players.length; j++) {
-            if(i === j) continue;
-            let p2 = players[j];
-
-            let m1 = Match.new(p1, p2);
-
-            let s1 = Math.round(Math.random()*2);
-            let s2 = Math.round(Math.random()*2);
-            m1.setHomeScore(s1);
-            m1.setAwayScore(s2);
-            console.log(p1.name, s1, s2, p2.name);
-
-            p1.matches.push(m1);
-            p2.matches.push(m1);
-        }
-    }
-    window.players = players;
-    */
-
+                    return player === null
+                        ? null
+                        : {
+                            title: player.name,
+                            component: "playerModalText"
+                        };
+                }]
+            },
+            views: {
+                "modal": {
+                    component: "modal"
+                }
+            },
+        });
 }]);
